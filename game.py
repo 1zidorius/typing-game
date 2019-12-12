@@ -10,7 +10,7 @@ class Game:
         self.playing_game = True
         self.success_count = 0
         pygame.init()
-        self.lines_read = self.load_words_file("words.txt")  # load words from the file
+        self.lines_read = self.load_words_file("words.txt")
         pygame.display.set_caption(TITLE)
         self.display_surface = pygame.display.set_mode((WIDTH, HEIGHT))
         self.clock = pygame.time.Clock()
@@ -19,19 +19,12 @@ class Game:
         self.running = True
 
     def new(self):
-        # start a new game
         self.run()
 
     def run(self):
-        # Game loop
         while self.playing:
             self.clock.tick(FPS)
             self.events()
-            self.update()
-            self.draw()
-
-    def update(self):
-        pass
 
     def events(self):
         words_on_screen = []
@@ -41,7 +34,7 @@ class Game:
         ended = False
         while self.playing_game:
             countdown_timer = GAME_LENGTH - (pygame.time.get_ticks() / 1000)
-            if int(countdown_timer) <= 0:  # end game
+            if int(countdown_timer) <= 0:
                 self.display_surface.fill(WHITE)
                 self.render_text(self.display_surface, self.font, "Game over", BLACK, (300, 150))
                 self.render_text(self.display_surface, self.font, f"Score: {self.success_count} words per minute",
@@ -79,6 +72,8 @@ class Game:
                                 typing_buffer.append(pygame.key.name(event.key))
                         current_text = "".join(typing_buffer)
                 self.render_text(self.display_surface, self.font, current_text, BLACK, (20, 450))
+                # width = 800
+                # height = 500
                 self.render_text(self.display_surface, self.font, str(round(countdown_timer, 2)), BLACK, (600, 450))
                 self.render_text(self.display_surface, self.font, f"Words {self.success_count}", BLACK, (10, 10))
             pygame.display.update()
@@ -88,9 +83,6 @@ class Game:
             if event.type == pygame.QUIT:
                 self.playing = False
                 self.running = False
-
-    def draw(self):
-        pass
 
     def load_words_file(self, filename):
         word_file = open(filename, "r")
@@ -115,12 +107,8 @@ class Game:
                 return i
         return -1
 
-    def show_start_screen(self):
-        pass
-
 
 g = Game()
-g.show_start_screen()
 while g.running:
     g.new()
 
