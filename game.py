@@ -60,6 +60,9 @@ class Game(metaclass=GameMeta):
         self.success_count_text = f'Score: {str(self.success_count)}'
         self.countdown_timer_text = str(round(self.countdown_timer, 2))
 
+        if self.is_word_reach_screen_edge():
+            self.playing = False
+
     def events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -101,13 +104,19 @@ class Game(metaclass=GameMeta):
 
     def display_words(self):
         for word in self.words_on_screen:
-            self.draw_text(str(word), 32, WHITE, word.x, word.y)
+            self.draw_text(str(word), 32, WHITE, word.position.x, word.position.y)
             word.update()
 
     def is_word_on_screen(self, word):
         for i, item in enumerate(self.words_on_screen):
             if str(item) == word:
                 self.words_on_screen.pop(i)
+                return True
+        return False
+
+    def is_word_reach_screen_edge(self):
+        for i, word in enumerate(self.words_on_screen):
+            if word.position.x >= WIDTH:
                 return True
         return False
 
@@ -137,5 +146,3 @@ while g.running:
     g.show_game_over_screen()
 
 pygame.quit()
-
-# https://github.com/kidscancode/pygame_tutorials/blob/master/platform/part%207/main.py
