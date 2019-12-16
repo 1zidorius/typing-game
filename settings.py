@@ -4,7 +4,7 @@ WIDTH = 800
 HEIGHT = 500
 FONT_NAME = "freesansbold.ttf"
 FONT_SIZE = 32
-GAME_LENGTH = 60
+GAME_LENGTH = 20
 
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)

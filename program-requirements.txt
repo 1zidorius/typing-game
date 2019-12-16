@@ -1,6 +1,6 @@
 OO concepts:
 - Inheritance
-- Encapsulation
+- Encapsulation - https://pythonprogramminglanguage.com/encapsulation/
 - Polymorphism
 - Abstraction
 
