@@ -71,7 +71,6 @@ class Game(metaclass=GameMeta):
                 self.running = False
             if event.type == pygame.KEYDOWN:
                 if pygame.key.name(event.key) == 'return':
-                    # TODO: pop object from array if its outside screen
                     if self.is_word_on_screen(self.typed_text):
                         self.success_count += 1
                     else:
